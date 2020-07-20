@@ -9,7 +9,7 @@ function useAuthenticated() {
     const abortCtrl = new AbortController();
     const opts = {signal: abortCtrl.signal};
 
-    fetch("/api/isLoggedIn")
+    fetch("/api/authenticated")
       .then(res => {
         if (res.status >= 400 && res.status <= 600) {
           console.log("not logged in");
@@ -19,7 +19,7 @@ function useAuthenticated() {
         }
       })
       .then(data => {
-        setLoggedIn(data.authorized);
+        setLoggedIn(data);
       })
       .catch(error => {
         console.log("caught an error", error);
@@ -40,3 +40,6 @@ function useAuthenticated() {
     return [loggedIn, setLoggedIn];
   }, [loggedIn])
 }
+
+
+export default useAuthenticated;

@@ -1,37 +1,9 @@
 import React, {useEffect, useState} from "react";
 import {Redirect, Route} from "react-router-dom";
+import useAuthenticated from "../utils/useAuthenticated";
 
-function PrivateRoute({ component: Component, ...rest}) {
-  const [loggedIn, setLoggedIn] = useState(null);
-
-  // make fetch call to see if user is logged in
-  useEffect(() => {
-    const abortCtrl = new AbortController();
-    const opts = {signal: abortCtrl.signal};
-
-    fetch("/api/isLoggedIn")
-      .then(res => {
-        if (res.status >= 400 && res.status <= 600) {
-          console.log("not logged in");
-          return {authorized: false}
-        } else {
-          return res.json();
-        }
-      })
-      .then(data => {
-        setLoggedIn(data.authorized);
-      })
-      .catch(error => {
-        console.log("caught an error", error);
-
-        if (error.name === "AbortError") {
-          console.log("request was cancelled");
-        }
-      })
-      
-
-    return () => abortCtrl.abort();
-  }, [])
+function ProtectedRoute({ component: Component, ...rest}) {
+  const [loggedIn, setLoggedIn] = useAuthenticated();
 
   return (
     <div>
@@ -45,4 +17,4 @@ function PrivateRoute({ component: Component, ...rest}) {
  
 
 
-export default PrivateRoute;
+export default ProtectedRoute;

@@ -35,10 +35,7 @@ function useAuthenticated() {
   }, []);
 
 
-  // return the state
-  useEffect(() => {
-    return [loggedIn, setLoggedIn];
-  }, [loggedIn])
+  return [loggedIn, setLoggedIn];
 }
 
 

@@ -2,8 +2,9 @@ import React, {useEffect, useState} from "react";
 import {Redirect, Route} from "react-router-dom";
 import useAuthenticated from "../utils/useAuthenticated";
 
-function ProtectedRoute({ component: Component, ...rest}) {
+function PrivateRoute({ component: Component, ...rest}) {
   const [loggedIn, setLoggedIn] = useAuthenticated();
+  console.log("loggedIn value", loggedIn);
 
   return (
     <div>
@@ -17,4 +18,4 @@ function ProtectedRoute({ component: Component, ...rest}) {
  
 
 
-export default ProtectedRoute;
+export default PrivateRoute;

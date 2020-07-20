@@ -12,7 +12,7 @@ const PORT = process.env.PORT;
 
 // quick login route that returns true
 app.get("/api/authenticated", (req,res) => {
-  res.json(true);
+  res.json(false);
 })
 
 

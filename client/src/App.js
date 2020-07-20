@@ -1,6 +1,10 @@
 import React from 'react';
 import {BrowserRouter as Router, Switch, Route, Link} from "react-router-dom";
 import PrivateRoute from "./components/PrivateRoute";
+import PublicRoute from "./components/PublicRoute";
+import Dashboard from "./Pages/Dashboard";
+import Login from "./Pages/Login";
+import Register from "./Pages/Register";
 
 function App() {
   return (
@@ -15,6 +19,9 @@ function App() {
               <Link to="/login">Login</Link>
             </li>
             <li>
+              <Link to="/register">Register</Link>
+            </li>
+            <li>
               <Link to="/dashboard">Dashboard</Link>
             </li>
 
@@ -24,15 +31,15 @@ function App() {
         <Switch>
           {/* home */}
           <Route exact path="/">
-            <Main />
+            <h1>Hello Main</h1>
           </Route>
 
-          <Route exact path="/login" component={Login} />
+          <PublicRoute exact path="/login" component={Login}  restricted={true}/>
+          <PublicRoute exact path="/register" component={Register}  restricted={true}/>
 
-          {/* protected Route */}
-          {/* <PrivateRoute exact path="/protected" component={Protected} /> */}
+          
 
-          <PrivateRoute exact path="/protected" component={Protected} />
+          <PrivateRoute exact path="/dashboard" component={Dashboard} />
         </Switch>
 
       </div>

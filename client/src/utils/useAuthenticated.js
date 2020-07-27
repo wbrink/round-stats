@@ -1,7 +1,9 @@
-import React, {useState, useEffect} from "react";
+import React, {useState, useEffect, useContext} from "react";
+import LoginContext from "../LoginContext";
 
 function useAuthenticated() {
-  const [loggedIn, setLoggedIn] = useState(null); // set to null because it will take time to complete fetch request
+  const {loggedIn, setLoggedIn} = useContext(LoginContext);
+  // const [loggedIn, setLoggedIn] = useState(null); // set to null because it will take time to complete fetch request
 
 
   // make fetch call to see if user is logged in (run when component mounts)

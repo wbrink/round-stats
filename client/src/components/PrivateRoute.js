@@ -4,7 +4,7 @@ import useAuthenticated from "../utils/useAuthenticated";
 
 function PrivateRoute({ component: Component, ...rest}) {
   const [loggedIn, setLoggedIn] = useAuthenticated();
-  console.log("loggedIn value", loggedIn);
+  // console.log("loggedIn value", loggedIn);
 
   return (
     <div>

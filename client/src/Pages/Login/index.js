@@ -1,8 +1,59 @@
-import React from "react";
+import React, { useState } from "react";
+import {useHistory} from "react-router-dom";
+import "./style.css";
+
 
 function Login() {
+  let history = useHistory();
+
+  const [username, setUsername] = useState("");
+  const [password, setPassword] = useState("");
+
+  const handleSubmit = (e) => {
+    e.preventDefault()
+    fetch("/api/login", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json"
+      },
+      body: JSON.stringify({username: username, password: password})
+    })
+    .then(res => res.json())
+    .then(data => {
+      console.log(data);
+
+      if (data.msg === "login successful") {
+        history.push("/dashboard");
+      }
+    })
+    .catch(error => {
+      console.log(error);
+    })
+
+  }
+
   return (
-    <h1>Login</h1>
+    <div className="login-container">
+      <h2 className="form-header">Login</h2>
+      <form id="login" action="" onSubmit={(e) => handleSubmit(e)}>
+        {/* username */}
+        <div className="form-group">
+          <label htmlFor="user" style={{marginBottom: "15px"}}>Username</label>
+          <input type="text" id="user" value={username} onChange={(e) => {setUsername(e.target.value)}}/>
+        </div>
+        
+        {/* password */}
+        <div className="form-group">
+          <label htmlFor="password" style={{marginBottom: "15px"}}>Password</label>
+          <input type="password" id="password" value={password} onChange={e => setPassword(e.target.value)}/>
+        </div>
+
+
+        <input id="submit" type="submit" value="Login"/>
+        
+      </form>
+
+    </div>
   )
 }
 

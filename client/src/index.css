@@ -1,0 +1,63 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: 'Montserrat', sans-serif;
+}
+
+html, body {
+  height: 100%;
+  width: 100%;
+}
+
+body {
+  background-color: teal;
+}
+
+/* used for logins and signups and course selector */
+.smaller-container {
+  margin: auto;
+  margin-top: 8vw;
+  border-radius: 10px;
+  background-color: white;
+  width: 500px;
+  height: 550px;
+  
+  position: relative;
+  box-shadow: 2px 6px 15px rgb(37, 37, 37);
+  border: none;
+  padding: 50px 75px 50px 75px;
+}
+
+/* .smaller-container::after {
+  position: absolute;
+  content: "";
+  top: 10px;
+  border-radius: 10px;
+  
+  left: 10px;
+  width: 500px;
+  height: 500px;
+  background-color: rgb(72, 89, 100);
+  z-index: -1;
+}
+
+.smaller-container::before {
+  position: absolute;
+  content: "";
+  top: 15px;
+  border-radius: 10px;
+  
+  left: 20px;
+  width: 500px;
+  height: 500px;
+  background-color: rgb(7, 66, 105);
+  z-index: -1;
+} */
+
+
+@media only screen and (max-width: 700px) {
+  .smaller-container {
+
+  }
+}

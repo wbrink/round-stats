@@ -27,13 +27,13 @@ function Nav() {
     return (
       <header>
         <nav>
-          <div>Golf Stats</div>
+          <Link to="/">Golf Stats</Link>
           <ul>
             <li><Link to="/">Home</Link></li>
             <li><Link to="/post">Post</Link></li>
             <li><Link to="/stats">Stats</Link></li>
             <li><Link to="/add-course">Add Course</Link></li>
-            <li onClick={logout}><Link to="/logout">Logout</Link></li>
+            <li onClick={logout} style={{cursor: "pointer"}}>Logout</li>
           </ul>
         </nav>
       </header>
@@ -42,7 +42,7 @@ function Nav() {
     return (
       <header>
         <nav>
-          <div>Golf Stats</div>
+          <Link to="/">Golf Stats</Link>
           <ul>
             <li><Link to="/login">Login</Link></li>
             <li><Link to="/register">Sign Up</Link></li>

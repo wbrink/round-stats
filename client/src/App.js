@@ -8,10 +8,9 @@ import Register from "./Pages/Register";
 import Nav from "./components/Nav";
 import Home from "./Pages/Home";
 import LoginContext from "./LoginContext";
-import useAuthenticatedState from './utils/useAuthenticatedState';
+import AddCourse from "./Pages/AddCourse/AddCourse";
 
 function App() {
-  // const [loggedIn, setLoggedIn] = useAuthenticatedState();
   const [loggedIn, setLoggedIn] = useState(null);
 
   return (
@@ -30,7 +29,7 @@ function App() {
           <PublicRoute exact path="/login" component={Login} restricted={true}/>
           <PublicRoute exact path="/register" component={Register} restricted={true}/>
 
-          
+          <PrivateRoute exact path="/add-course" component={AddCourse} />
           <PrivateRoute exact path="/dashboard" component={Dashboard} />
         </Switch>
 

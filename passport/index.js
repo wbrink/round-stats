@@ -25,7 +25,7 @@ function(username, password, done) {
     if (!bcrypt.compareSync(password, user.password)) {
       return done(null, false, { message: 'Invalid Password' });
     }
-    console.log("in passport,", user)
+    // console.log("in passport,", user)
     return done(null, user);
   });
 }
@@ -34,16 +34,16 @@ function(username, password, done) {
 
 
 passport.serializeUser(function(user, done) {
-  console.log("serializing user");
+  // console.log("serializing user");
   done(null, user._id);
 });
 
 
 passport.deserializeUser(function(id, done) {
-  console.log("deserializing", id);
+  // console.log("deserializing", id);
   User.findOne({_id: ObjectId(id)}, function(err, user) {
     done(err, user);
-    console.log(user);
+    // console.log(user);
   });
 });
 

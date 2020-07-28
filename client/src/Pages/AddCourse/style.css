@@ -1,0 +1,17 @@
+.smaller-container {
+  height: 500px;
+  width: 97%;
+  background-color: white;
+  margin: auto;
+  margin-top: 7vw;
+  box-shadow: 2px 6px 15px rgb(37, 37, 37);
+  border-radius: 10px;
+
+  padding: 20px;
+  
+}
+
+#add-course-form {
+  display: flex;
+  flex-direction: column;
+}

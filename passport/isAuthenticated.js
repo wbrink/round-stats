@@ -6,4 +6,12 @@ function isAuthenticated(req, res, next) {
   }
 }
 
-module.exports = isAuthenticated;
+function isAuthorized(req,res,next) {
+  if (!req.user) {
+    res.sendStatus(403);
+  } else {
+    next();
+  }
+}
+
+module.exports = {isAuthenticated, isAuthorized};

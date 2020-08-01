@@ -3,12 +3,14 @@ import "./style.css";
 
 import CourseInfo from "./CourseInfo";
 import CoursePars from "./CoursePars";
+import Summary from "./Summary";
 
 function AddCourse() {
   const [formInfo, setFormInfo] = useState({
     state: "",
-    courseName: "",
-    courseLength: "18",
+    country: "",
+    name: "",
+    length: "18",
     par1: 0,
     par2: 0,
     par3: 0,
@@ -29,7 +31,7 @@ function AddCourse() {
     par18: 0,
   });
   
-  const [step, setStep] = useState(2);
+  const [step, setStep] = useState(3);
 
 
   const handleSubmit = (e) => {
@@ -53,14 +55,14 @@ function AddCourse() {
   }
 
 
+
   return (
     <div className="smaller-container">
-      <h1>Add Course</h1>
 
       <form id="add-course-form" onSubmit={(e) => handleSubmit(e)}>
-        {step == 1 && <CourseInfo handleChange={handleChange} state={formInfo} nextStep={nextStep} prevStep={prevStep}/> }
+        {step == 1 && <CourseInfo handleChange={handleChange} state={formInfo} nextStep={nextStep} /> }
         {step == 2 && <CoursePars handleChange={handleChange} state={formInfo} nextStep={nextStep} prevStep={prevStep}/> }
-        <input type="submit" id="submit" value="Add Course"/>
+        {step == 3 && <Summary state={formInfo} prevStep={prevStep}/>}
       </form>
     </div>
   )

@@ -10,13 +10,6 @@
   text-align: center;
 }
 
-/* puts the label and input together */
-.form-group {
-  display: flex;
-  flex-direction: column;
-  margin-bottom: 30px;
-}
-
 
 input {
   background-color: #E5E8ED;
@@ -27,12 +20,16 @@ input {
 
 
 #submit {
+  display: block;
   padding: 15px;
   background-color: teal;
   color: white;
   font-size: 16px;
+  margin: auto;
   margin-top: 40px;
   cursor: pointer;
+  width: 75%;
+  
 }
 
 

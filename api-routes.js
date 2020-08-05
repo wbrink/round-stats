@@ -89,13 +89,13 @@ router.post("/api/update-course", isAuthorized, async (req,res) => {
 
   // do the updating on the page
   try {
-    let result = await db.collection("courses").updateOne({country: req.body.country, state: req.body.state, name: req.body.name, userID: req.user._id}, {properties});
+    let result = await db.collection("courses").updateOne({country: req.body.country, state: req.body.state, name: req.body.name, userID: req.user._id}, {$set: {...properties}});
     console.log(result);
     res.json({result});
   } catch (error) {
+    console.log(error);
     res.sendStatus(503);
   }
-
 })
 
 module.exports = router;

@@ -1,9 +1,14 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useContext } from 'react';
 import Prompt from "../../components/Prompt/index";
+import {useHistory} from "react-router-dom";
+import NotificationContext from "../../NotificationContext";
 
 
 const Summary = (props) => {
   const [showPopup, setShowPopup] = useState(false);
+  const {message, setMessage} = useContext(NotificationContext);
+
+  const history = useHistory();
 
   // Course Data
   const {country, state, name, length, par1, par2, par3, par4, par5, par6, par7, par8, par9, par10, par11, par12, par13, par14, par15, par16, par17, par18} = props.state;
@@ -15,13 +20,16 @@ const Summary = (props) => {
     // make api call to overwrite the course
 
     try {
-      let res = await fetch("/api/overwrite-course", {
+      let res = await fetch("/api/update-course", {
         method: "POST",
         headers: {
           "Content-Type": "application/json"
         },
         body: JSON.stringify(courseInfo)
       })
+      let data = await res.json();
+      history.push("/");
+      setMessage("Course Added");
     } catch (error) {
       console.log(error);
     }
@@ -51,6 +59,11 @@ const Summary = (props) => {
       if (data == "course already exists") {
         // show popup that says do you want to overwrite the course (stats from the past will not be affected by new change)
         setShowPopup(true);
+      } else {
+        // then the course was saved successfully
+        console.log("course saved");
+        history.push("/");
+
       }
     } catch (error) {
       console.log(error);

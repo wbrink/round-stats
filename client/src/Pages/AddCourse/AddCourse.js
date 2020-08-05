@@ -31,7 +31,7 @@ function AddCourse() {
     par18: 0,
   });
   
-  const [step, setStep] = useState(3);
+  const [step, setStep] = useState(1);
 
 
   const handleSubmit = (e) => {
@@ -51,7 +51,7 @@ function AddCourse() {
   const handleChange = (input) => (e) => {
     // e.preventDefault();
     setFormInfo({...formInfo, [input]: e.target.value})
-    console.log(input, e.target.value);
+    // console.log(input, e.target.value);
   }
 
 

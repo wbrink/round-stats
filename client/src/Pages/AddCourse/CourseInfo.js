@@ -1,10 +1,14 @@
 import React, {useState} from "react";
+import {useNotifications} from "../../NotificationContext";
 
 
 function CourseInfo(props) {
   const [stateFeedback, setStateFeeback] = useState("");
   const [courseFeedback, setCourseFeedback] = useState("");
   const [countryFeedback, setCountryFeedback] = useState("");
+
+  const context = useNotifications();
+  console.log("context", context);
 
   const validateInput = () => {
     let validated = [];
@@ -36,10 +40,15 @@ function CourseInfo(props) {
       props.nextStep();
     }
   }
+
+  const handleClick = () => {
+    // setMessage("hello world");
+    console.log('hello');
+  } 
   
   return (
     <div>
-      <h2 className="form-title">Add Course Info</h2>
+      <h2 className="form-title" onClick={handleClick}>Add Course Info</h2>
       <div className="form-group p-btm-30">
         <label htmlFor="country">Country</label>
         <input type="text" value={props.state.country} onChange={(e) => props.handleChange("country")(e)}></input>

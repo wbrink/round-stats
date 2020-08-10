@@ -6,7 +6,7 @@ import NotificationContext from "../../NotificationContext";
 
 const Summary = (props) => {
   const [showPopup, setShowPopup] = useState(false);
-  const {message, setMessage} = useContext(NotificationContext);
+  // const {message, setMessage} = useContext(NotificationContext);
 
   const history = useHistory();
 
@@ -29,7 +29,7 @@ const Summary = (props) => {
       })
       let data = await res.json();
       history.push("/");
-      setMessage("Course Added");
+      // setMessage("Course Added");
     } catch (error) {
       console.log(error);
     }

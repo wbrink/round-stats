@@ -1,6 +1,8 @@
 import React, { useState } from "react";
 import {useHistory} from "react-router-dom";
 import "./style.css";
+import { useNotifications } from "../../NotificationContext";
+
 
 
 function Login() {
@@ -8,6 +10,9 @@ function Login() {
 
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
+
+  // state from useNotifications
+  const {message, setMessage} = useNotifications();
 
   const handleSubmit = (e) => {
     e.preventDefault()
@@ -24,6 +29,7 @@ function Login() {
 
       if (data.msg === "login successful") {
         history.push("/dashboard");
+        setMessage("Login Succesful");
       }
     })
     .catch(error => {

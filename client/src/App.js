@@ -8,42 +8,44 @@ import Register from "./Pages/Register";
 import Nav from "./components/Nav";
 import Home from "./Pages/Home";
 import LoginContext from "./LoginContext";
-import NotificationContext from "./NotificationContext";
+import {NotificationProvider} from "./NotificationContext";
 import AddCourse from "./Pages/AddCourse/AddCourse";
 import Notification from "./components/Notification";
 
 function App() {
   const [loggedIn, setLoggedIn] = useState(null);
-  const [message, setMessage] = useState("Notification");
-
 
   return (
     <div>
-      <NotificationContext.Provider value={{message, setMessage}}>
+
+      <NotificationProvider>
         <Notification />
-      </NotificationContext.Provider>
-      <LoginContext.Provider value={{loggedIn, setLoggedIn}}>
-        <Router>
-          <div style={{width: "100%", height: "100%"}}>
-            {/* navbar */}
-            <Nav />
       
-            <Switch>
-              {/* home */}
-              {/* <Route exact path="/" component={Home}/> */}
+        
+      
+        <LoginContext.Provider value={{loggedIn, setLoggedIn}}>
+          <Router>
+            <div style={{width: "100%", height: "100%"}}>
+              {/* navbar */}
+              <Nav />
+        
+              <Switch>
+                {/* home */}
+                {/* <Route exact path="/" component={Home}/> */}
 
-              <PublicRoute exact path="/" component={Home} restricted={false}/>
+                <PublicRoute exact path="/" component={Home} restricted={false}/>
 
-              <PublicRoute exact path="/login" component={Login} restricted={true}/>
-              <PublicRoute exact path="/register" component={Register} restricted={true}/>
+                <PublicRoute exact path="/login" component={Login} restricted={true}/>
+                <PublicRoute exact path="/register" component={Register} restricted={true}/>
 
-              <PrivateRoute exact path="/add-course" component={AddCourse} />
-              <PrivateRoute exact path="/dashboard" component={Dashboard} />
-            </Switch>
+                <PrivateRoute exact path="/add-course" component={AddCourse} />
+                <PrivateRoute exact path="/dashboard" component={Dashboard} />
+              </Switch>
 
-          </div>
-        </Router>
-      </LoginContext.Provider>
+            </div>
+          </Router>
+        </LoginContext.Provider>
+      </NotificationProvider>
     </div>
   );
 }

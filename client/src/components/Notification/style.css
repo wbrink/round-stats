@@ -1,11 +1,12 @@
 .notification {
   position: absolute;
   top: 9vh;
-  left: auto;
+  left: 50%;
+  transform: translateX(-50%);
   right: auto;
   background-color: rgb(102, 199, 45);
   color: white;
-  width: 100%;
+  width: 95%;
   z-index: 100;
   border-radius: 10px;
   padding: 10px;
@@ -13,7 +14,24 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
+  opacity: 0;
 }
+
+.enter {
+  animation-name: enter;
+  animation-duration: 1s;
+  animation-fill-mode: forwards;
+}
+
+.exit {
+  animation-name: exit;
+  animation-duration: .5s;
+
+  /* Let the <div> element retain the style values from the last keyframe when the animation ends: */
+  animation-fill-mode: forwards;
+}
+
+
 
 .message {
   display: flex;
@@ -21,4 +39,36 @@
 
 .message svg {
   margin-right: 10px;
+}
+
+.close-notification {
+  cursor: pointer;
+}
+
+
+@keyframes enter {
+  0% {
+    left: -50%;
+    opacity: 0;
+  }
+  60% {
+    left: 55%;
+    opacity: .8;
+  }
+  100% {
+    left: 50%;
+    opacity: 1;
+  }
+}
+
+/* fades the notification left */
+@keyframes exit {
+  from {
+    left: 0;
+    opacity: 1;
+  }
+  to {
+    left: -100%;
+    opacity: 0;
+  }
 }

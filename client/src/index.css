@@ -38,7 +38,7 @@ body {
 
 /* puts the label and input together */
 .form-group { 
-  padding-bottom: 15px;
+  padding-bottom: 30px;
   display: flex;
   flex-direction: column;
   /* margin-bottom: 25px; */

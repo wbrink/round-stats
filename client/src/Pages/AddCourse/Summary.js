@@ -1,12 +1,13 @@
 import React, { useState, useEffect, useContext } from 'react';
 import Prompt from "../../components/Prompt/index";
 import {useHistory} from "react-router-dom";
-import NotificationContext from "../../NotificationContext";
+import { useNotifications } from "../../NotificationContext";
 
 
 const Summary = (props) => {
   const [showPopup, setShowPopup] = useState(false);
-  // const {message, setMessage} = useContext(NotificationContext);
+  const {message, setMessage} = useNotifications();
+  console.log("in summary portion", message);
 
   const history = useHistory();
 
@@ -28,10 +29,12 @@ const Summary = (props) => {
         body: JSON.stringify(courseInfo)
       })
       let data = await res.json();
+      
       history.push("/");
-      // setMessage("Course Added");
+      setMessage({type: "success", message: "Course Added Successfully"});
     } catch (error) {
       console.log(error);
+      setMessage({type: "danger", message: "Error adding Course. Try Again"})
     }
 
   }
@@ -63,10 +66,13 @@ const Summary = (props) => {
         // then the course was saved successfully
         console.log("course saved");
         history.push("/");
-
+        setMessage({type: "success", message: "Course Added Successfully"});
       }
     } catch (error) {
       console.log(error);
+      history.push("/add-course");
+      setMessage({type: "danger", message: "Error adding Course. Try Again"})
+
     }
     
   }

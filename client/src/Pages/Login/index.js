@@ -29,7 +29,7 @@ function Login() {
 
       if (data.msg === "login successful") {
         history.push("/dashboard");
-        setMessage("Login Succesful");
+        setMessage({type: "success", message: "Login Succesful"});
       }
     })
     .catch(error => {

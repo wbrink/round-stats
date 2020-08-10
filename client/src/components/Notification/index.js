@@ -4,30 +4,31 @@ import { useNotifications } from "../../NotificationContext";
 
 
 const Notification = () => {
+  console.log("hello from notification")
   const [closed, setClosed] = useState(false);
   const {message, setMessage} = useNotifications();
 
   const closeNotification = () => {    
     setClosed(true);
-    setMessage("");
+    setMessage({type: "", message: ""});
   }
 
 
   // when message is changed show
   useEffect(() => {
-    if (message) {
+    if (message.message) {
       setClosed(false);
     }
   }, [message])
   
   
   return (
-    <div className={message && !closed ? "notification enter" : "notification exit"}>
+    <div className={message.message && !closed ? message.type == "warning" ? "notification warning enter" : message.type == "danger" ? "notification danger enter": message.type == "success" ? "notification success enter" : "" : "notification exit"} >
       <div className="message">
         <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-check-circle-fill" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
           <path fill-rule="evenodd" d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0zm-3.97-3.03a.75.75 0 0 0-1.08.022L7.477 9.417 5.384 7.323a.75.75 0 0 0-1.06 1.06L6.97 11.03a.75.75 0 0 0 1.079-.02l3.992-4.99a.75.75 0 0 0-.01-1.05z"/>
         </svg>
-        <p>{message}</p>
+        <p>{message.message}</p>
       </div>
       
       
